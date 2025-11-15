@@ -183,7 +183,7 @@ export default function AboutPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/20 to-transparent z-10" />
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&auto=format&fit=crop&q=80"
+                src="/advocate-photo.png"
                 alt="Adv. Kishor Kagathara - Professional Lawyer"
                 className="w-full h-[600px] object-cover"
               />
