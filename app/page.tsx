@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Phone, MessageCircle, Calendar, Scale, Shield, Heart, Building2, FileText, Users, MapPin, Mail, Star, User } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { ArrowRight, Phone, MessageCircle, Calendar, Scale, Shield, Heart, Building2, FileText, Users, MapPin, Mail, Star, User, CheckCircle, Award, Clock } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
 
@@ -10,34 +10,19 @@ export default function Home() {
   const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true })
   const [aboutRef, aboutInView] = useInView({ threshold: 0.1, triggerOnce: true })
   const [servicesRef, servicesInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [statsRef, statsInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [contactRef, contactInView] = useInView({ threshold: 0.1, triggerOnce: true })
+
+  const controls = useAnimation()
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
-    // Smooth scroll polyfill for older browsers
-    const handleSmoothScroll = (e: Event) => {
-      const target = e.target as HTMLAnchorElement
-      if (target.hash) {
-        e.preventDefault()
-        const element = document.querySelector(target.hash)
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          })
-        }
-      }
+    const updateMousePosition = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
     }
 
-    // Add click listeners to all anchor links
-    const links = document.querySelectorAll('a[href^="#"]')
-    links.forEach(link => {
-      link.addEventListener('click', handleSmoothScroll)
-    })
-
-    return () => {
-      links.forEach(link => {
-        link.removeEventListener('click', handleSmoothScroll)
-      })
-    }
+    window.addEventListener('mousemove', updateMousePosition)
+    return () => window.removeEventListener('mousemove', updateMousePosition)
   }, [])
 
   const containerVariants = {
@@ -46,358 +31,297 @@ export default function Home() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   }
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 40, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
       }
     }
   }
 
   const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
+    hidden: { y: 60, opacity: 0, scale: 0.8 },
     visible: {
       y: 0,
       opacity: 1,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut"
+        duration: 0.8,
+        ease: [0.25, 0.1, 0.25, 1]
       }
     }
   }
 
-  const servicePreviewCards = [
+  const serviceCards = [
     {
-      icon: <Shield className="h-8 w-8" />,
+      icon: <Shield className="w-8 h-8 sm:w-10 sm:h-10" />,
       title: "Criminal Defense",
-      description: "Expert criminal defense representation with proven track record in complex cases.",
-      color: "from-rose-500 to-red-600",
+      description: "Expert criminal defense representation with proven track record in complex cases and trial advocacy.",
+      features: ["Trial Advocacy", "Bail Applications", "Criminal Appeals", "White Collar Crime"],
       link: "/services#criminal"
     },
     {
-      icon: <Scale className="h-8 w-8" />,
+      icon: <Scale className="w-8 h-8 sm:w-10 sm:h-10" />,
       title: "Civil Litigation",
-      description: "Comprehensive civil litigation services for disputes and personal injury cases.",
-      color: "from-blue-500 to-indigo-600",
+      description: "Comprehensive civil litigation services for disputes, contracts, and personal injury cases.",
+      features: ["Contract Disputes", "Property Law", "Personal Injury", "Commercial Litigation"],
       link: "/services#civil"
     },
     {
-      icon: <Heart className="h-8 w-8" />,
+      icon: <Heart className="w-8 h-8 sm:w-10 sm:h-10" />,
       title: "Family Law",
-      description: "Compassionate legal guidance through family matters and divorce proceedings.",
-      color: "from-emerald-500 to-teal-600",
+      description: "Compassionate legal guidance through family matters, divorce proceedings, and child custody.",
+      features: ["Divorce Proceedings", "Child Custody", "Alimony", "Property Division"],
       link: "/services#family"
     }
   ]
 
-  const quickInfoCards = [
+  const statsCards = [
     {
-      icon: <Users className="h-6 w-6" />,
-      title: "15+ Years",
-      subtitle: "Experience",
+      icon: <Award className="w-8 h-8" />,
+      number: "15+",
+      label: "Years Experience",
       description: "Trusted legal expertise"
     },
     {
-      icon: <Scale className="h-6 w-6" />,
-      title: "500+",
-      subtitle: "Cases Handled",
+      icon: <Users className="w-8 h-8" />,
+      number: "500+",
+      label: "Cases Handled",
       description: "Successfully resolved"
     },
     {
-      icon: <Shield className="h-6 w-6" />,
-      title: "98%",
-      subtitle: "Success Rate",
+      icon: <CheckCircle className="w-8 h-8" />,
+      number: "98%",
+      label: "Success Rate",
       description: "Proven track record"
+    },
+    {
+      icon: <Clock className="w-8 h-8" />,
+      number: "24/7",
+      label: "Availability",
+      description: "Emergency legal support"
+    }
+  ]
+
+  const testimonials = [
+    {
+      name: "Rajesh Patel",
+      case: "Property Dispute Resolution",
+      rating: 5,
+      location: "Dhrol",
+      text: "Adv. Kishor Kagathara handled my complex property dispute with exceptional professionalism and expertise. His strategic approach helped me secure a favorable outcome."
+    },
+    {
+      name: "Priya Shah",
+      case: "Divorce & Child Custody",
+      rating: 5,
+      location: "Jamnagar",
+      text: "During the most difficult period of my life, Adv. Kagathara provided not just legal expertise but also emotional support throughout the proceedings."
+    },
+    {
+      name: "Vikram Industries",
+      case: "Corporate Legal Advisory",
+      rating: 5,
+      location: "Rajkot",
+      text: "We've been working with Adv. Kagathara for our company's legal needs. His business law expertise has been invaluable for our growth."
     }
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+    <main className="min-h-screen bg-black overflow-x-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0">
+        <motion.div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.03) 0%, transparent 50%)`
+          }}
+        />
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-20"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -20, 0],
+              opacity: [0.1, 0.3, 0.1],
+              scale: [0.5, 1, 0.5]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Hero Section */}
       <section 
         ref={heroRef}
-        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+        className="relative min-h-screen flex items-center justify-center section-premium"
       >
-        {/* Premium Particle Background */}
-        <div className="absolute inset-0 z-0">
-          {[...Array(20)].map((_, i) => (
+        <div className="container-premium">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate={heroInView ? "visible" : "hidden"}
+            className="text-center relative z-10"
+          >
+            {/* Premium Badge */}
             <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-amber-400/20 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0]
-              }}
-              transition={{
-                duration: 3 + Math.random() * 3,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            initial={{ scale: 1.1, opacity: 0 }}
-            animate={heroInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 1.5 }}
-            className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1920&h=1080&auto=format&fit=crop&q=80')`
-            }}
-          />
-        </div>
-        
-        {/* Animated Background Elements - Premium Black & White */}
-        <div className="absolute inset-0 z-1">
-          <motion.div
-            animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-white/10 to-gray-100/10 rounded-full blur-xl"
-          />
-          <motion.div
-            animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-white/8 to-gray-200/8 rounded-full blur-xl"
-          />
-          <motion.div
-            animate={{ 
-              rotate: [0, 360],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-white/5 to-gray-100/5 rounded-full blur-2xl"
-          />
-          <motion.div
-            animate={{ 
-              rotate: [360, 0],
-              scale: [1, 0.8, 1]
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/3 left-1/4 w-36 h-36 bg-gradient-to-r from-gray-100/5 to-white/5 rounded-full blur-2xl"
-          />
-        </div>
-
-        {/* Hero Content with Premium Glass Effect */}
-        <motion.div
-          ref={heroRef}
-          variants={containerVariants}
-          initial="hidden"
-          animate={heroInView ? "visible" : "hidden"}
-          className="relative z-10 max-w-7xl mx-auto px-6 py-20 text-center"
-        >
-          {/* Glass Morphism Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-slate-900/20 to-black/20 backdrop-blur-sm rounded-3xl border border-amber-400/10 shadow-2xl" />
-          
-          <div className="relative z-10">
-          {/* Premium Badge with White Theme */}
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center px-6 py-3 rounded-full bg-black/40 border border-white/30 backdrop-blur-sm premium-shadow mb-8"
-          >
-            <motion.span 
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="mr-2 text-lg"
+              variants={itemVariants}
+              className="glass-card inline-flex items-center px-6 py-3 rounded-full mb-8 hover-glow"
             >
-              ⚖️
-            </motion.span>
-            <span className="text-white text-sm font-bold tracking-wide uppercase">
-              Leading Legal Excellence
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full" />
-          </motion.div>
-
-          {/* Main Heading with Black & White Theme */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-tight tracking-tight"
-            style={{ fontFamily: 'Montserrat' }}
-          >
-            <span className="text-white drop-shadow-2xl">Adv. </span>
-            <span className="text-white drop-shadow-2xl font-outline-2">
-              Kishor Kagathara
-            </span>
-          </motion.h1>
-
-          {/* Premium Tagline with White Theme */}
-          <motion.p
-            variants={itemVariants}
-            className="text-xl md:text-3xl text-gray-100 mb-6 max-w-4xl mx-auto leading-relaxed font-medium"
-            style={{ fontFamily: 'Montserrat' }}
-          >
-            <span className="text-white font-bold">Expert Legal Counsel</span> & 
-            <motion.span 
-              className="text-gray-200"
-              animate={{ opacity: [0.8, 1, 0.8] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              {" "}Trusted Advocate
-            </motion.span>
-          </motion.p>
-
-          {/* Premium Location with White Theme */}
-          <motion.div
-            variants={itemVariants}
-            className="flex items-center justify-center space-x-3 text-gray-100 mb-8 bg-black/20 border border-white/20 backdrop-blur-sm px-6 py-3 rounded-full max-w-fit mx-auto"
-          >
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <MapPin className="h-5 w-5 text-white" />
+              <motion.span 
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                className="mr-3 text-xl"
+              >
+                ⚖️
+              </motion.span>
+              <span className="text-white text-sm font-semibold tracking-wider uppercase">
+                Leading Legal Excellence Since 2009
+              </span>
             </motion.div>
-            <span className="font-medium text-white">Laxminarayan Complex, Near Government Hospital, Dhrol</span>
-          </motion.div>
 
-          {/* Premium Quick Stats - Black & White Theme */}
+            {/* Main Heading */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-responsive-xl font-bold mb-6 text-gradient-white animate-fade-in-up"
+            >
+              Adv. Kishor Kagathara
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.p
+              variants={itemVariants}
+              className="text-responsive-lg text-white/90 mb-8 max-w-4xl mx-auto font-medium animate-fade-in-up delay-200"
+            >
+              Expert Legal Counsel & Trusted Advocate
+              <span className="block text-responsive-md text-white/70 mt-2">
+                Serving justice with integrity and excellence
+              </span>
+            </motion.p>
+
+            {/* Location */}
+            <motion.div
+              variants={itemVariants}
+              className="glass-card inline-flex items-center px-6 py-3 rounded-full mb-12 hover-lift"
+            >
+              <MapPin className="w-5 h-5 text-white mr-3" />
+              <span className="text-white font-medium text-sm sm:text-base">
+                Laxminarayan Complex, Near Govt. Hospital, Dhrol
+              </span>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up delay-500"
+            >
+              <Link href="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="btn-premium-white group relative overflow-hidden"
+                >
+                  <Calendar className="mr-3 w-5 h-5" />
+                  <span>Book Consultation</span>
+                  <ArrowRight className="ml-3 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </motion.button>
+              </Link>
+
+              <motion.a
+                href="tel:+919638312551"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-premium-outline group"
+              >
+                <Phone className="mr-3 w-5 h-5" />
+                <span>Call Now</span>
+                <motion.div
+                  className="ml-3 w-2 h-2 bg-green-400 rounded-full"
+                  animate={{ scale: [1, 1.5, 1] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                />
+              </motion.a>
+            </motion.div>
+
+            {/* Contact Info */}
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto animate-fade-in-up delay-300"
+            >
+              <div className="glass-card flex items-center justify-center p-4 hover-glow">
+                <Phone className="w-5 h-5 text-white mr-3" />
+                <div className="text-left">
+                  <div className="text-white font-semibold text-sm sm:text-base">+91 96383 12551</div>
+                  <div className="text-white font-semibold text-sm sm:text-base">+91 99242 63454</div>
+                </div>
+              </div>
+              <div className="glass-card flex items-center justify-center p-4 hover-glow">
+                <Mail className="w-5 h-5 text-white mr-3 flex-shrink-0" />
+                <div className="text-left">
+                  <div className="text-white font-semibold text-xs sm:text-sm">kbk.advocatedhrol@gmail.com</div>
+                  <div className="text-white font-semibold text-xs sm:text-sm">jbk1630@gmail.com</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section ref={statsRef} className="section-premium bg-white/5">
+        <div className="container-premium">
           <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            variants={containerVariants}
+            initial="hidden"
+            animate={statsInView ? "visible" : "hidden"}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            {quickInfoCards.map((stat, index) => (
+            {statsCards.map((stat, index) => (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.15, y: -5 }}
-                className="bg-black/20 border border-white/20 backdrop-blur-sm shadow-2xl text-center px-6 py-4 rounded-2xl floating-animation"
-                style={{ animationDelay: `${index * 0.2}s` }}
+                variants={cardVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="card-premium text-center animate-scale-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <motion.div 
-                  className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-white to-gray-100 rounded-full flex items-center justify-center text-black shadow-lg"
+                  className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center text-black"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
                   {stat.icon}
                 </motion.div>
-                <div className="text-3xl md:text-4xl font-black text-white mb-1">
-                  {stat.title}
+                <div className="text-3xl sm:text-4xl font-bold text-white mb-2">
+                  {stat.number}
                 </div>
-                <div className="text-gray-100 text-sm font-bold mb-1">
-                  {stat.subtitle}
+                <div className="text-white/90 font-semibold text-sm sm:text-base mb-1">
+                  {stat.label}
                 </div>
-                <div className="text-gray-300 text-xs">
+                <div className="text-white/70 text-xs sm:text-sm">
                   {stat.description}
                 </div>
               </motion.div>
             ))}
           </motion.div>
-
-          {/* Premium Contact Info - White Theme */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 bg-black/20 border border-white/20 backdrop-blur-sm px-8 py-6 rounded-2xl max-w-2xl mx-auto shadow-2xl"
-          >
-            <motion.div 
-              className="flex items-center space-x-3 text-gray-100"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Phone className="h-6 w-6 text-white" />
-              </motion.div>
-              <span className="font-semibold text-lg text-white">+91 96383 12551 | +91 99242 63454</span>
-            </motion.div>
-            <div className="hidden sm:block w-2 h-2 bg-white rounded-full animate-pulse" />
-            <motion.div 
-              className="flex items-center space-x-3 text-gray-100"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <Mail className="h-6 w-6 text-white" />
-              </motion.div>
-              <span className="font-semibold text-lg text-white">kbk.advocatedhrol@gmail.com | jbk1630@gmail.com</span>
-            </motion.div>
-          </motion.div>
-
-          {/* Premium CTA Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          >
-            <Link href="/contact">
-              <motion.button
-                whileHover={{ 
-                  scale: 1.08, 
-                  boxShadow: "0 30px 60px -12px rgba(255, 255, 255, 0.3)",
-                  y: -2
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center px-12 py-6 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-black text-lg overflow-hidden shadow-2xl hover:shadow-white/30 transition-all duration-300"
-                style={{ fontFamily: 'Montserrat' }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
-                <motion.div
-                  animate={{ x: [-100, 100, -100] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                />
-                <span className="relative z-10 flex items-center">
-                  <Calendar className="mr-3 h-6 w-6 text-black" />
-                  <span className="text-black">Book Consultation</span>
-                  <ArrowRight className="ml-3 h-6 w-6 text-black transition-transform group-hover:translate-x-2" />
-                </span>
-              </motion.button>
-            </Link>
-
-            <motion.a
-              href="tel:+919638312551"
-              whileHover={{ 
-                scale: 1.08, 
-                boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.2)",
-                y: -2
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="group bg-black/30 border-2 border-white backdrop-blur-sm inline-flex items-center px-12 py-6 rounded-full text-white font-black text-lg hover:bg-white hover:text-black transition-all duration-300 shadow-2xl"
-              style={{ fontFamily: 'Montserrat' }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Phone className="mr-3 h-6 w-6" />
-              </motion.div>
-              <span>Call Now</span>
-              <motion.div
-                className="ml-3 w-3 h-3 bg-green-400 rounded-full animate-pulse"
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
-              />
-            </motion.a>
-          </motion.div>
-          </div>
-        </motion.div>
+        </div>
       </section>
-
-      {/* About Preview Section */}
-      <section ref={aboutRef} className="py-20 bg-gradient-to-br from-slate-800 via-slate-900 to-black">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={aboutInView ? "visible" : "hidden"}
-          className="max-w-7xl mx-auto px-6"
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
