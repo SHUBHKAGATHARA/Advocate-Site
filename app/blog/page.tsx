@@ -146,31 +146,44 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
-      {/* Background Elements */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Animated particles background */}
       <div className="absolute inset-0">
-        <motion.div
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)'
+          }}
           animate={{
-            rotate: [0, 360]
+            opacity: [0.4, 0.8, 0.4]
           }}
           transition={{
-            duration: 50,
+            duration: 5,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-yellow-400/5 to-yellow-600/5 rounded-full blur-3xl"
         />
-        <motion.div
-          animate={{
-            rotate: [360, 0]
-          }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-yellow-500/5 to-yellow-700/5 rounded-full blur-3xl"
-        />
+        
+        {/* Floating particles */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full"
+            style={{
+              left: `${8 + i * 8}%`,
+              top: `${5 + i * 7}%`
+            }}
+            animate={{
+              y: [-15, 15, -15],
+              opacity: [0.2, 0.8, 0.2]
+            }}
+            transition={{
+              duration: 3.5 + i * 0.3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       <motion.div
@@ -178,7 +191,7 @@ export default function BlogPage() {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-6 py-20"
+        className="relative z-10 container-premium py-20"
       >
         {/* Page Header */}
         <motion.div variants={itemVariants} className="text-center mb-20">
@@ -186,19 +199,22 @@ export default function BlogPage() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 glass-card"
           >
-            <BookOpen className="mr-2 h-4 w-4 text-yellow-400" />
-            <span className="text-yellow-400 text-sm font-medium">
+            <BookOpen className="mr-3 h-4 w-4 text-white" />
+            <span className="text-white text-sm font-semibold tracking-wider uppercase">
               Legal Insights & Updates
             </span>
           </motion.div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white">Legal </span>
-            <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Blog
-            </span>
-          </h1>
+          
+          <motion.h1 
+            className="text-responsive-hero font-black mb-8 text-white leading-[0.9] tracking-tight"
+            initial={{ y: 50, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Legal Blog
+          </motion.h1>
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Stay informed with latest legal updates, practical guides, and expert insights from Adv. Kishor Kagathara
           </p>
@@ -239,21 +255,21 @@ export default function BlogPage() {
                       {post.readTime} read
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-white/80 transition-colors">
                     {post.title}
                   </h3>
-                  <p className="text-gray-300 mb-4 leading-relaxed">
+                  <p className="text-white/70 mb-4 leading-relaxed">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                      <div className="flex items-center text-gray-400 text-sm">
+                      <div className="flex items-center text-white/60 text-sm">
                         <Eye className="h-4 w-4 mr-1" />
                         {post.views} views
                       </div>
                     </div>
                     <motion.div
-                      className="flex items-center text-yellow-400 font-semibold group-hover:text-yellow-300"
+                      className="flex items-center text-white font-semibold group-hover:text-white/80"
                       whileHover={{ x: 5 }}
                     >
                       Read More
@@ -269,19 +285,19 @@ export default function BlogPage() {
         {/* Recent Posts */}
         <motion.div variants={itemVariants} className="mb-20">
           <h2 className="text-3xl font-bold text-white mb-8 flex items-center">
-            <Clock className="mr-3 h-8 w-8 text-yellow-400" />
+            <Clock className="mr-3 h-8 w-8 text-white" />
             Recent Articles
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {recentPosts.map((post, index) => (
               <motion.article
                 key={post.id}
-                whileHover={{ y: -5 }}
-                className="group cursor-pointer bg-gradient-to-br from-white/5 to-white/10 border border-white/10 backdrop-blur-sm rounded-xl p-6 hover:border-yellow-400/30 transition-all duration-300"
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="group cursor-pointer glass-card border border-white/20 backdrop-blur-sm rounded-xl p-6 hover:border-white/40 transition-all duration-300"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-16 h-16 bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <BookOpen className="h-8 w-8 text-yellow-400" />
+                  <div className="w-16 h-16 bg-white/10 border border-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <BookOpen className="h-8 w-8 text-white" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center space-x-2 mb-2">

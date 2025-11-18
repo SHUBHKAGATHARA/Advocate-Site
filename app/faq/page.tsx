@@ -131,31 +131,44 @@ export default function FAQPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
-      {/* Background Elements */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Animated particles background */}
       <div className="absolute inset-0">
-        <motion.div
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 30% 70%, rgba(255,255,255,0.08) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 50%)'
+          }}
           animate={{
-            rotate: [0, 360]
+            opacity: [0.3, 0.7, 0.3]
           }}
           transition={{
-            duration: 50,
+            duration: 4,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-yellow-400/5 to-yellow-600/5 rounded-full blur-3xl"
         />
-        <motion.div
-          animate={{
-            rotate: [360, 0]
-          }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-yellow-500/5 to-yellow-700/5 rounded-full blur-3xl"
-        />
+        
+        {/* Floating particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-white/15 rounded-full"
+            style={{
+              left: `${12 + i * 12}%`,
+              top: `${10 + i * 10}%`
+            }}
+            animate={{
+              y: [-20, 20, -20],
+              opacity: [0.1, 0.6, 0.1]
+            }}
+            transition={{
+              duration: 4 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       <motion.div
@@ -196,12 +209,12 @@ export default function FAQPage() {
               <motion.button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(255,255,255,0.1)" }}
                 whileTap={{ scale: 0.95 }}
                 className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-white to-gray-100 text-black'
-                    : 'bg-white/10 text-gray-300 border border-white/20 hover:border-white/50'
+                    ? 'btn-premium-white'
+                    : 'btn-premium-outline border border-white/40 text-white hover:bg-white hover:text-black'
                 }`}
               >
                 {category}
@@ -220,14 +233,14 @@ export default function FAQPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="bg-gradient-to-r from-white/5 to-white/10 border border-white/10 rounded-2xl backdrop-blur-sm overflow-hidden"
+                className="glass-card border border-white/20 rounded-2xl backdrop-blur-sm overflow-hidden"
               >
                 <motion.button
                   onClick={() => toggleFAQ(index)}
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-white to-gray-100 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
                       <HelpCircle className="h-6 w-6 text-black" />
                     </div>
                     <h3 className="text-white font-semibold text-lg pr-4">{faq.question}</h3>
@@ -250,9 +263,9 @@ export default function FAQPage() {
                       className="border-t border-white/10"
                     >
                       <div className="p-6 pl-20">
-                        <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                        <p className="text-white/80 leading-relaxed">{faq.answer}</p>
                         <div className="mt-4">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-yellow-400/20 text-yellow-400 border border-yellow-400/30">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/20 text-white border border-white/30">
                             {faq.category}
                           </span>
                         </div>

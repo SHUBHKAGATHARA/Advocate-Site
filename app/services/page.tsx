@@ -76,8 +76,6 @@ export default function ServicesPage() {
         "Insurance Claims",
         "Consumer Protection"
       ],
-      color: "from-blue-400 to-blue-600",
-      bgColor: "from-blue-500/10 to-blue-600/5"
     },
     {
       id: "family",
@@ -92,8 +90,6 @@ export default function ServicesPage() {
         "Marriage Registration",
         "Domestic Relations"
       ],
-      color: "from-pink-400 to-pink-600",
-      bgColor: "from-pink-500/10 to-pink-600/5"
     },
     {
       id: "property",
@@ -107,9 +103,7 @@ export default function ServicesPage() {
         "Zoning Issues",
         "Landlord-Tenant Law",
         "Property Documentation"
-      ],
-      color: "from-green-400 to-green-600",
-      bgColor: "from-green-500/10 to-green-600/5"
+      ]
     },
     {
       id: "corporate",
@@ -123,9 +117,7 @@ export default function ServicesPage() {
         "Compliance Issues",
         "Partnership Agreements",
         "Corporate Governance"
-      ],
-      color: "from-purple-400 to-purple-600",
-      bgColor: "from-purple-500/10 to-purple-600/5"
+      ]
     },
     {
       id: "employment",
@@ -139,20 +131,56 @@ export default function ServicesPage() {
         "Labor Disputes",
         "Employment Contracts",
         "Workers' Rights"
-      ],
-      color: "from-orange-400 to-orange-600",
-      bgColor: "from-orange-500/10 to-orange-600/5"
+      ]
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Animated particles background */}
+      <div className="absolute inset-0">
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)'
+          }}
+          animate={{
+            opacity: [0.3, 0.7, 0.3]
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        {/* Floating particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/30 rounded-full"
+            style={{
+              left: `${15 + i * 12}%`,
+              top: `${8 + i * 8}%`
+            }}
+            animate={{
+              y: [-15, 15, -15],
+              opacity: [0.3, 0.9, 0.3]
+            }}
+            transition={{
+              duration: 4 + i * 0.3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-6 py-20"
+        className="relative z-10 container-premium py-20"
       >
         {/* Page Header */}
         <motion.div 
@@ -163,46 +191,55 @@ export default function ServicesPage() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 glass-card"
           >
-            <span className="text-yellow-400 text-sm font-medium">
+            <span className="text-white text-sm font-semibold tracking-wider uppercase">
               Legal Services by Adv. Kishor Kagathara
             </span>
           </motion.div>
           
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white">Comprehensive </span>
-            <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Legal Solutions
-            </span>
-          </h1>
+          <motion.h1 
+            className="text-responsive-hero font-black mb-8 text-white leading-[0.9] tracking-tight"
+            initial={{ y: 50, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Comprehensive Legal
+            <br />
+            <span className="text-white/80">Solutions</span>
+          </motion.h1>
           
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
+          <motion.p 
+            className="text-responsive-lg text-white/70 max-w-4xl mx-auto leading-relaxed mb-8"
+            initial={{ y: 30, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             With over 15 years of experience, I provide expert legal representation across all major practice areas. 
             From criminal defense to corporate law, I offer personalized attention and proven results for every client.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link href="/contact">
               <motion.button
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
+                className="btn-premium-white group relative px-8 py-4 rounded-full overflow-hidden"
               >
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center text-lg font-bold">
                   Schedule Consultation
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </span>
               </motion.button>
             </Link>
             
             <motion.a
               href="tel:+919924263454"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.8)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 flex items-center"
+              className="btn-premium-outline group px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center backdrop-blur-sm"
             >
-              <Phone className="mr-2 h-5 w-5" />
+              <Phone className="mr-3 h-5 w-5" />
               +91 96383 12551 | +91 99242 63454
             </motion.a>
           </div>
@@ -256,7 +293,7 @@ export default function ServicesPage() {
                       className="flex items-center space-x-3"
                     >
                       <CheckCircle className="h-4 w-4 text-yellow-400 flex-shrink-0" />
-                      <span className="text-gray-300 text-sm">{feature}</span>
+                      <span className="text-white/80 text-sm font-medium">{feature}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -284,62 +321,66 @@ export default function ServicesPage() {
           variants={cardVariants}
           className="text-center mb-16"
         >
-          <div className="max-w-4xl mx-auto p-8 rounded-3xl bg-gradient-to-r from-yellow-400/10 to-yellow-600/10 border border-yellow-400/20 backdrop-blur-sm">
-            <h3 className="text-3xl font-bold text-white mb-6">
+          <motion.div 
+            className="max-w-4xl mx-auto p-8 rounded-3xl glass-card border border-white/20 backdrop-blur-sm"
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.3 }}
+          >
+            <h3 className="text-responsive-3xl font-black text-white mb-8 tracking-tight">
               Why Choose Adv. Kishor Kagathara?
             </h3>
             
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="grid md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
                   <Users className="h-8 w-8 text-black" />
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">15+ Years Experience</h4>
-                <p className="text-gray-300">Proven track record in handling complex legal cases</p>
+                <h4 className="text-xl font-semibold text-white mb-3 tracking-tight">15+ Years Experience</h4>
+                <p className="text-white/70">Proven track record in handling complex legal cases</p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
                   <Scale className="h-8 w-8 text-black" />
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">500+ Cases Won</h4>
-                <p className="text-gray-300">Successfully resolved cases across multiple practice areas</p>
+                <h4 className="text-xl font-semibold text-white mb-3 tracking-tight">500+ Cases Won</h4>
+                <p className="text-white/70">Successfully resolved cases across multiple practice areas</p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
                   <Shield className="h-8 w-8 text-black" />
                 </div>
-                <h4 className="text-xl font-semibold text-white mb-2">Personalized Service</h4>
-                <p className="text-gray-300">Individual attention and tailored legal strategies</p>
+                <h4 className="text-xl font-semibold text-white mb-3 tracking-tight">24/7 Availability</h4>
+                <p className="text-white/70">Always available for urgent legal matters and consultations</p>
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/contact">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
+                  className="btn-premium-white group relative px-8 py-4 rounded-full overflow-hidden"
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center text-lg font-bold">
                     Get Free Consultation
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </span>
                 </motion.button>
               </Link>
               
               <motion.a
                 href="mailto:jbk1630@gmail.com"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.8)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center"
+                className="btn-premium-outline group px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center backdrop-blur-sm"
               >
-                <Mail className="mr-2 h-5 w-5" />
+                <Mail className="mr-3 h-5 w-5" />
                 Email Me
               </motion.a>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </div>

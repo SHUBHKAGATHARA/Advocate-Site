@@ -139,31 +139,44 @@ export default function ContactPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20">
-      {/* Background Elements */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Animated particles background */}
       <div className="absolute inset-0">
-        <motion.div
+        <motion.div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(circle at 40% 40%, rgba(255,255,255,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%)'
+          }}
           animate={{
-            rotate: [0, 360]
+            opacity: [0.4, 0.8, 0.4]
           }}
           transition={{
-            duration: 50,
+            duration: 6,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
-          className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-r from-yellow-400/5 to-yellow-600/5 rounded-full blur-3xl"
         />
-        <motion.div
-          animate={{
-            rotate: [360, 0]
-          }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 left-20 w-80 h-80 bg-gradient-to-r from-yellow-500/5 to-yellow-700/5 rounded-full blur-3xl"
-        />
+        
+        {/* Floating particles */}
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-white/25 rounded-full"
+            style={{
+              left: `${10 + i * 10}%`,
+              top: `${5 + i * 9}%`
+            }}
+            animate={{
+              y: [-10, 10, -10],
+              opacity: [0.2, 0.7, 0.2]
+            }}
+            transition={{
+              duration: 3 + i * 0.4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </div>
 
       <motion.div
@@ -171,7 +184,7 @@ export default function ContactPage() {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="relative z-10 max-w-7xl mx-auto px-6 py-20"
+        className="relative z-10 container-premium py-20"
       >
         {/* Page Header */}
         <motion.div variants={itemVariants} className="text-center mb-20">
@@ -179,21 +192,32 @@ export default function ContactPage() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 glass-card"
           >
-            <span className="text-yellow-400 text-sm font-medium">
+            <span className="text-white text-sm font-semibold tracking-wider uppercase">
               Get In Touch
             </span>
           </motion.div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white">Contact </span>
-            <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              Adv. Kishor Kagathara
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          
+          <motion.h1 
+            className="text-responsive-hero font-black mb-8 text-white leading-[0.9] tracking-tight"
+            initial={{ y: 50, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Contact
+            <br />
+            <span className="text-white/80">Adv. Kishor Kagathara</span>
+          </motion.h1>
+          
+          <motion.p 
+            className="text-responsive-lg text-white/70 max-w-4xl mx-auto leading-relaxed"
+            initial={{ y: 30, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             Ready to discuss your legal matter? I'm here to help you navigate your legal challenges with expert guidance and personalized attention.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Contact Information Cards */}
@@ -203,19 +227,19 @@ export default function ContactPage() {
               key={index}
               href={item.href}
               target={item.href.includes('maps') ? '_blank' : undefined}
-              whileHover={{ scale: 1.05, y: -10 }}
-              className="block p-6 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 backdrop-blur-sm hover:border-yellow-400/30 transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -10, boxShadow: "0 25px 50px rgba(255,255,255,0.1)" }}
+              className="block p-6 rounded-2xl glass-card border border-white/20 backdrop-blur-sm hover:border-white/40 transition-all duration-300"
             >
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center text-black">
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black shadow-lg">
                   {item.icon}
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-lg">{item.title}</h3>
-                  <p className="text-yellow-400 font-semibold">{item.value}</p>
+                  <p className="text-white/90 font-semibold">{item.value}</p>
                 </div>
               </div>
-              <p className="text-gray-300 text-sm">{item.description}</p>
+              <p className="text-white/70 text-sm leading-relaxed">{item.description}</p>
             </motion.a>
           ))}
         </motion.div>
