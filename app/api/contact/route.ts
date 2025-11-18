@@ -91,15 +91,15 @@ export async function POST(req: NextRequest) {
     const clientEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f8f9fa;">
         <div style="background: linear-gradient(135deg, #1e293b 0%, #334155 100%); padding: 30px; border-radius: 10px; margin-bottom: 20px;">
-          <h1 style="color: #fbbf24; margin: 0; font-size: 24px;">⚖️ Thank you for contacting Adv. Kishor Kagathara</h1>
+          <h1 style="color: #fbbf24; margin: 0; font-size: 24px;">⚖️ Thank you for contacting our Legal Office</h1>
         </div>
         
         <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
           <h2 style="color: #1e293b;">Dear ${name},</h2>
           
           <p style="color: #475569; line-height: 1.6;">
-            Thank you for reaching out to me regarding your ${legalMatter.toLowerCase()} matter. 
-            I have received your message and will review it carefully.
+            Thank you for reaching out to our legal office regarding your ${legalMatter.toLowerCase()} matter. 
+            Your inquiry has been sent to both Adv. Kishor Kagathara and JB Kagathara, and we will review it carefully.
           </p>
           
           <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #fbbf24;">
@@ -113,25 +113,29 @@ export async function POST(req: NextRequest) {
             <li><strong>Initial Review:</strong> I will review your case details within 2-4 hours</li>
             <li><strong>Response:</strong> You can expect a detailed response within 24 hours</li>
             <li><strong>Consultation:</strong> If needed, I'll arrange a free consultation to discuss your matter</li>
-            <li><strong>Emergency:</strong> For urgent matters, please call +91 96383 12551 immediately</li>
+            <li><strong>Emergency:</strong> For urgent matters, please call +91 96383 12551 or +91 99242 63454 immediately</li>
           </ul>
           
           <div style="background: #dcfce7; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #16a34a;">
             <h3 style="color: #166534; margin: 0 0 10px 0;">📞 Need Immediate Help?</h3>
             <p style="color: #166534; margin: 0;">
-              For emergency legal matters requiring immediate attention, please call my 24/7 hotline:
-              <strong>+91 96383 12551</strong>
+              For emergency legal matters requiring immediate attention, please call our 24/7 hotlines:<br/>
+              <strong>Adv. Kishor Kagathara: +91 96383 12551</strong><br/>
+              <strong>JB Kagathara: +91 99242 63454</strong>
             </p>
           </div>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
             <p style="color: #475569; line-height: 1.6;">
               <strong>Best regards,</strong><br/>
-              <strong style="color: #1e293b;">Adv. Kishor Kagathara</strong><br/>
-              Senior Advocate<br/>
-              Laxminarayan Complex, Near Government Hospital, Dhrol<br/>
+              <strong style="color: #1e293b;">Legal Office Team</strong><br/>
+              Laxminarayan Complex, Near Government Hospital, Dhrol<br/><br/>
+              <strong>Adv. Kishor Kagathara - Senior Advocate</strong><br/>
               📧 kbk.advocatedhrol@gmail.com<br/>
-              📞 +91 96383 12551
+              📞 +91 96383 12551<br/><br/>
+              <strong>JB Kagathara - Associate Advocate</strong><br/>
+              📧 jbk1630@gmail.com<br/>
+              📞 +91 99242 63454
             </p>
           </div>
         </div>
@@ -143,10 +147,15 @@ export async function POST(req: NextRequest) {
       </div>
     `
 
-    // Send email to advocate
+    // Send email to both advocates
+    const advocateEmails = [
+      process.env.ADVOCATE_EMAIL || 'kbk.advocatedhrol@gmail.com',
+      process.env.ADVOCATE_EMAIL_2 || 'jbk1630@gmail.com'
+    ];
+    
     await transporter.sendMail({
       from: `"Website Contact Form" <${process.env.SMTP_USER}>`,
-      to: process.env.ADVOCATE_EMAIL || process.env.SMTP_USER,
+      to: advocateEmails.join(', '),
       subject: `🔔 New Legal Inquiry: ${legalMatter} - ${subject}`,
       html: advocateEmailHtml,
       replyTo: email,
@@ -154,7 +163,7 @@ export async function POST(req: NextRequest) {
 
     // Send auto-reply to client
     await transporter.sendMail({
-      from: `"Adv. Kishor Kagathara" <${process.env.SMTP_USER}>`,
+      from: `"Legal Office - Kagathara & Associates" <${process.env.SMTP_USER}>`,
       to: email,
       subject: `✅ Received: Your legal inquiry regarding ${legalMatter}`,
       html: clientEmailHtml,
@@ -173,7 +182,7 @@ export async function POST(req: NextRequest) {
     
     return NextResponse.json(
       { 
-        error: 'Failed to send message. Please try again or contact directly at kbk.advocatedhrol@gmail.com' 
+        error: 'Failed to send message. Please try again or contact directly at kbk.advocatedhrol@gmail.com or jbk1630@gmail.com' 
       },
       { status: 500 }
     )

@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Award, Users, TrendingUp, Shield, CheckCircle, Star } from 'lucide-react'
+import { Award, Users, TrendingUp, Shield, CheckCircle, Star, Scale } from 'lucide-react'
 
 export default function AboutUs() {
   const [ref, inView] = useInView({
@@ -164,10 +164,22 @@ export default function AboutUs() {
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-yellow-400/20 to-transparent z-10" />
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&auto=format&fit=crop&q=80"
+                src="/advocate-photo.png"
                 alt="Professional Lawyer"
                 className="w-full h-[600px] object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }}
               />
+              <div className="hidden w-full h-[600px] bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center rounded-2xl border border-white/10">
+                <div className="text-center text-white">
+                  <Scale className="h-16 w-16 mx-auto mb-4 text-yellow-400" />
+                  <p className="text-lg font-semibold">Professional Lawyer</p>
+                  <p className="text-gray-300">Legal Expert</p>
+                </div>
+              </div>
               <motion.div
                 initial={{ x: -100, opacity: 0 }}
                 animate={inView ? { x: 0, opacity: 1 } : {}}

@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
     {
       title: "Contact and Updates",
       icon: <Scale className="h-6 w-6" />,
-      content: "You have the right to access, update, or request deletion of your personal information. If you have questions about this privacy policy or wish to update your information, please contact us at kbk.advocatedhrol@gmail.com or +91 96383 12551."
+      content: "You have the right to access, update, or request deletion of your personal information. If you have questions about this privacy policy or wish to update your information, please contact us at kbk.advocatedhrol@gmail.com / jbk1630@gmail.com or +91 96383 12551 / +91 99242 63454."
     }
   ]
 
@@ -177,11 +177,19 @@ export default function PrivacyPolicyPage() {
                 <a href="mailto:kbk.advocatedhrol@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors">
                   kbk.advocatedhrol@gmail.com
                 </a>
+                <span className="text-gray-300"> | </span>
+                <a href="mailto:jbk1630@gmail.com" className="text-yellow-400 hover:text-yellow-300 transition-colors">
+                  jbk1630@gmail.com
+                </a>
               </div>
               <div className="text-center">
                 <h4 className="text-white font-bold mb-2">Phone</h4>
                 <a href="tel:+919638312551" className="text-yellow-400 hover:text-yellow-300 transition-colors">
                   +91 96383 12551
+                </a>
+                <span className="text-gray-300"> | </span>
+                <a href="tel:+919924263454" className="text-yellow-400 hover:text-yellow-300 transition-colors">
+                  +91 99242 63454
                 </a>
               </div>
             </div>

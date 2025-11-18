@@ -121,7 +121,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-800 to-slate-950">
+    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
       {/* Hero Section */}
       <section 
         ref={heroRef}
@@ -164,17 +164,17 @@ export default function Home() {
           />
         </div>
         
-        {/* Animated Background Elements - Premium Enhancement */}
+        {/* Animated Background Elements - Premium Black & White */}
         <div className="absolute inset-0 z-1">
           <motion.div
             animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-amber-400/10 to-orange-500/10 rounded-full blur-xl"
+            className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-white/10 to-gray-100/10 rounded-full blur-xl"
           />
           <motion.div
             animate={{ y: [0, 20, 0], x: [0, -10, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-amber-500/10 to-orange-600/10 rounded-full blur-xl"
+            className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-white/8 to-gray-200/8 rounded-full blur-xl"
           />
           <motion.div
             animate={{ 
@@ -182,7 +182,7 @@ export default function Home() {
               scale: [1, 1.2, 1]
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-amber-300/5 to-orange-400/5 rounded-full blur-2xl"
+            className="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-white/5 to-gray-100/5 rounded-full blur-2xl"
           />
           <motion.div
             animate={{ 
@@ -190,7 +190,7 @@ export default function Home() {
               scale: [1, 0.8, 1]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-1/3 left-1/4 w-36 h-36 bg-gradient-to-r from-orange-400/5 to-amber-500/5 rounded-full blur-2xl"
+            className="absolute bottom-1/3 left-1/4 w-36 h-36 bg-gradient-to-r from-gray-100/5 to-white/5 rounded-full blur-2xl"
           />
         </div>
 
@@ -206,10 +206,10 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-slate-900/20 to-black/20 backdrop-blur-sm rounded-3xl border border-amber-400/10 shadow-2xl" />
           
           <div className="relative z-10">
-          {/* Premium Badge with Shimmer Effect */}
+          {/* Premium Badge with White Theme */}
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center px-6 py-3 rounded-full glass-morphism premium-shadow mb-8"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-black/40 border border-white/30 backdrop-blur-sm premium-shadow mb-8"
           >
             <motion.span 
               animate={{ rotate: [0, 360] }}
@@ -218,55 +218,55 @@ export default function Home() {
             >
               ⚖️
             </motion.span>
-            <span className="text-gradient text-sm font-bold tracking-wide uppercase">
+            <span className="text-white text-sm font-bold tracking-wide uppercase">
               Leading Legal Excellence
             </span>
-            <div className="absolute inset-0 shimmer rounded-full" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full" />
           </motion.div>
 
-          {/* Main Heading with Premium Typography */}
+          {/* Main Heading with Black & White Theme */}
           <motion.h1
             variants={itemVariants}
             className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-tight tracking-tight"
             style={{ fontFamily: 'Montserrat' }}
           >
             <span className="text-white drop-shadow-2xl">Adv. </span>
-            <span className="text-gradient drop-shadow-2xl">
+            <span className="text-white drop-shadow-2xl font-outline-2">
               Kishor Kagathara
             </span>
           </motion.h1>
 
-          {/* Premium Tagline with Animation */}
+          {/* Premium Tagline with White Theme */}
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-3xl text-gray-200 mb-6 max-w-4xl mx-auto leading-relaxed font-medium"
+            className="text-xl md:text-3xl text-gray-100 mb-6 max-w-4xl mx-auto leading-relaxed font-medium"
             style={{ fontFamily: 'Montserrat' }}
           >
-            <span className="text-gradient font-bold">Expert Legal Counsel</span> & 
+            <span className="text-white font-bold">Expert Legal Counsel</span> & 
             <motion.span 
-              className="text-white"
-              animate={{ opacity: [0.7, 1, 0.7] }}
+              className="text-gray-200"
+              animate={{ opacity: [0.8, 1, 0.8] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               {" "}Trusted Advocate
             </motion.span>
           </motion.p>
 
-          {/* Premium Location with Icon Animation */}
+          {/* Premium Location with White Theme */}
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center space-x-3 text-gray-300 mb-8 glass-morphism px-6 py-3 rounded-full max-w-fit mx-auto"
+            className="flex items-center justify-center space-x-3 text-gray-100 mb-8 bg-black/20 border border-white/20 backdrop-blur-sm px-6 py-3 rounded-full max-w-fit mx-auto"
           >
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <MapPin className="h-5 w-5 text-amber-400" />
+              <MapPin className="h-5 w-5 text-white" />
             </motion.div>
-            <span className="font-medium">Laxminarayan Complex, Near Government Hospital, Dhrol</span>
+            <span className="font-medium text-white">Laxminarayan Complex, Near Government Hospital, Dhrol</span>
           </motion.div>
 
-          {/* Premium Quick Stats */}
+          {/* Premium Quick Stats - Black & White Theme */}
           <motion.div
             variants={itemVariants}
             className="flex flex-wrap justify-center gap-8 mb-12"
@@ -275,20 +275,20 @@ export default function Home() {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.15, y: -5 }}
-                className="glass-morphism premium-shadow text-center px-6 py-4 rounded-2xl floating-animation"
+                className="bg-black/20 border border-white/20 backdrop-blur-sm shadow-2xl text-center px-6 py-4 rounded-2xl floating-animation"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <motion.div 
-                  className="w-16 h-16 mx-auto mb-3 luxury-gradient rounded-full flex items-center justify-center text-black shadow-lg"
+                  className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-white to-gray-100 rounded-full flex items-center justify-center text-black shadow-lg"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.6 }}
                 >
                   {stat.icon}
                 </motion.div>
-                <div className="text-3xl md:text-4xl font-black text-gradient mb-1">
+                <div className="text-3xl md:text-4xl font-black text-white mb-1">
                   {stat.title}
                 </div>
-                <div className="text-white text-sm font-bold mb-1">
+                <div className="text-gray-100 text-sm font-bold mb-1">
                   {stat.subtitle}
                 </div>
                 <div className="text-gray-300 text-xs">
@@ -298,10 +298,10 @@ export default function Home() {
             ))}
           </motion.div>
 
-          {/* Premium Contact Info */}
+          {/* Premium Contact Info - White Theme */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 glass-morphism px-8 py-6 rounded-2xl max-w-2xl mx-auto premium-shadow"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12 bg-black/20 border border-white/20 backdrop-blur-sm px-8 py-6 rounded-2xl max-w-2xl mx-auto shadow-2xl"
           >
             <motion.div 
               className="flex items-center space-x-3 text-gray-100"
@@ -311,11 +311,11 @@ export default function Home() {
                 animate={{ rotate: [0, 15, -15, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
-                <Phone className="h-6 w-6 text-amber-400" />
+                <Phone className="h-6 w-6 text-white" />
               </motion.div>
-              <span className="font-semibold text-lg">+91 96383 12551</span>
+              <span className="font-semibold text-lg text-white">+91 96383 12551 | +91 99242 63454</span>
             </motion.div>
-            <div className="hidden sm:block w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
+            <div className="hidden sm:block w-2 h-2 bg-white rounded-full animate-pulse" />
             <motion.div 
               className="flex items-center space-x-3 text-gray-100"
               whileHover={{ scale: 1.05 }}
@@ -324,9 +324,9 @@ export default function Home() {
                 animate={{ scale: [1, 1.1, 1] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <Mail className="h-6 w-6 text-amber-400" />
+                <Mail className="h-6 w-6 text-white" />
               </motion.div>
-              <span className="font-semibold text-lg">kbk.advocatedhrol@gmail.com</span>
+              <span className="font-semibold text-lg text-white">kbk.advocatedhrol@gmail.com | jbk1630@gmail.com</span>
             </motion.div>
           </motion.div>
 
@@ -339,25 +339,25 @@ export default function Home() {
               <motion.button
                 whileHover={{ 
                   scale: 1.08, 
-                  boxShadow: "0 30px 60px -12px rgba(251, 191, 36, 0.4)",
+                  boxShadow: "0 30px 60px -12px rgba(255, 255, 255, 0.3)",
                   y: -2
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative inline-flex items-center px-12 py-6 rounded-full luxury-gradient text-black font-black text-lg overflow-hidden premium-shadow transition-all duration-300"
+                className="group relative inline-flex items-center px-12 py-6 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-black text-lg overflow-hidden shadow-2xl hover:shadow-white/30 transition-all duration-300"
                 style={{ fontFamily: 'Montserrat' }}
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-r from-gray-100/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 />
                 <motion.div
                   animate={{ x: [-100, 100, -100] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                 />
                 <span className="relative z-10 flex items-center">
-                  <Calendar className="mr-3 h-6 w-6" />
-                  Book Consultation
-                  <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-2" />
+                  <Calendar className="mr-3 h-6 w-6 text-black" />
+                  <span className="text-black">Book Consultation</span>
+                  <ArrowRight className="ml-3 h-6 w-6 text-black transition-transform group-hover:translate-x-2" />
                 </span>
               </motion.button>
             </Link>
@@ -366,11 +366,11 @@ export default function Home() {
               href="tel:+919638312551"
               whileHover={{ 
                 scale: 1.08, 
-                boxShadow: "0 25px 50px -12px rgba(251, 191, 36, 0.3)",
+                boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.2)",
                 y: -2
               }}
               whileTap={{ scale: 0.95 }}
-              className="group glass-morphism inline-flex items-center px-12 py-6 rounded-full premium-border text-amber-400 font-black text-lg hover:bg-amber-400/10 transition-all duration-300"
+              className="group bg-black/30 border-2 border-white backdrop-blur-sm inline-flex items-center px-12 py-6 rounded-full text-white font-black text-lg hover:bg-white hover:text-black transition-all duration-300 shadow-2xl"
               style={{ fontFamily: 'Montserrat' }}
             >
               <motion.div
@@ -379,7 +379,7 @@ export default function Home() {
               >
                 <Phone className="mr-3 h-6 w-6" />
               </motion.div>
-              Call Now
+              <span>Call Now</span>
               <motion.div
                 className="ml-3 w-3 h-3 bg-green-400 rounded-full animate-pulse"
                 animate={{ scale: [1, 1.3, 1] }}
@@ -402,7 +402,7 @@ export default function Home() {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">About </span>
-              <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent">
+              <span className="text-white font-outline-2">
                 Adv. Kishor Kagathara
               </span>
             </h2>
@@ -412,9 +412,9 @@ export default function Home() {
             </p>
             <Link href="/about">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -12px rgba(251, 191, 36, 0.2)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px -12px rgba(255, 255, 255, 0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center px-8 py-4 rounded-full border-2 border-amber-400 bg-slate-900/50 backdrop-blur-sm text-amber-400 font-bold hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-xl"
+                className="inline-flex items-center px-8 py-4 rounded-full border-2 border-white bg-black/30 backdrop-blur-sm text-white font-bold hover:bg-white hover:text-black transition-all duration-300 shadow-xl"
               >
                 Learn More About Me
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -435,7 +435,7 @@ export default function Home() {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               <span className="text-white">Legal </span>
-              <span className="bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 bg-clip-text text-transparent">
+              <span className="text-white font-outline-2">
                 Services
               </span>
             </h2>
@@ -482,15 +482,15 @@ export default function Home() {
                     <motion.button
                       whileHover={{ scale: 1.08, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="group/btn relative w-full px-8 py-4 rounded-full luxury-gradient text-black font-bold hover:shadow-2xl hover:shadow-amber-500/30 transition-all duration-300"
+                      className="group/btn relative w-full px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
                       style={{ fontFamily: 'Montserrat' }}
                     >
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full"
+                        className="absolute inset-0 bg-gradient-to-r from-gray-100/30 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 rounded-full"
                       />
                       <span className="relative z-10 flex items-center justify-center">
-                        Explore Service
-                        <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover/btn:translate-x-2" />
+                        <span className="text-black">Explore Service</span>
+                        <ArrowRight className="ml-3 h-5 w-5 text-black transition-transform group-hover/btn:translate-x-2" />
                       </span>
                     </motion.button>
                   </Link>
@@ -638,7 +638,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="px-10 py-5 rounded-full border-2 border-amber-400 bg-slate-900/50 backdrop-blur-sm text-amber-400 font-bold text-lg hover:bg-amber-400 hover:text-black transition-all duration-300 shadow-xl"
               >
-                Call +91 96383 12551
+                Call +91 99242 63454
               </motion.a>
             </div>
           </motion.div>

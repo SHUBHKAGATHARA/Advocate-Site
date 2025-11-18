@@ -57,7 +57,7 @@ export default function FAQPage() {
     },
     {
       question: "Are you available for emergency legal matters?",
-      answer: "Yes, I provide 24/7 emergency legal services for urgent matters such as criminal arrests, restraining orders, bail applications, and other time-sensitive legal issues. You can reach me at +91 96383 12551 anytime.",
+      answer: "Yes, I provide 24/7 emergency legal services for urgent matters such as criminal arrests, restraining orders, bail applications, and other time-sensitive legal issues. You can reach us at +91 96383 12551 or +91 99242 63454 anytime.",
       category: "Emergency"
     },
     {
@@ -198,10 +198,10 @@ export default function FAQPage() {
                 onClick={() => setSelectedCategory(category)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${
                   selectedCategory === category
-                    ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black'
-                    : 'bg-white/10 text-gray-300 border border-white/20 hover:border-yellow-400/50'
+                    ? 'bg-gradient-to-r from-white to-gray-100 text-black'
+                    : 'bg-white/10 text-gray-300 border border-white/20 hover:border-white/50'
                 }`}
               >
                 {category}
@@ -227,7 +227,7 @@ export default function FAQPage() {
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-white to-gray-100 rounded-full flex items-center justify-center">
                       <HelpCircle className="h-6 w-6 text-black" />
                     </div>
                     <h3 className="text-white font-semibold text-lg pr-4">{faq.question}</h3>
@@ -236,7 +236,7 @@ export default function FAQPage() {
                     animate={{ rotate: openFAQ === index ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <ChevronDown className="h-6 w-6 text-yellow-400" />
+                    <ChevronDown className="h-6 w-6 text-white" />
                   </motion.div>
                 </motion.button>
                 
@@ -278,24 +278,24 @@ export default function FAQPage() {
           
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <motion.a
-              href="tel:+919638312551"
+              href="tel:+919924263454"
               whileHover={{ scale: 1.05, y: -5 }}
               className="p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-green-600/5 border border-green-500/20 backdrop-blur-sm text-center hover:border-green-400/40 transition-all duration-300"
             >
               <Phone className="h-12 w-12 text-green-400 mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Call Directly</h3>
-              <p className="text-green-400 font-semibold">+91 96383 12551</p>
+              <p className="text-green-400 font-semibold">+91 96383 12551 | +91 99242 63454</p>
               <p className="text-gray-300 text-sm mt-2">Available 24/7 for emergencies</p>
             </motion.a>
 
             <motion.a
-              href="mailto:kbk.advocatedhrol@gmail.com"
+              href="mailto:jbk1630@gmail.com"
               whileHover={{ scale: 1.05, y: -5 }}
               className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20 backdrop-blur-sm text-center hover:border-blue-400/40 transition-all duration-300"
             >
               <Mail className="h-12 w-12 text-blue-400 mx-auto mb-4" />
               <h3 className="text-white font-bold mb-2">Send Email</h3>
-              <p className="text-blue-400 font-semibold text-sm">kbk.advocatedhrol@gmail.com</p>
+              <p className="text-blue-400 font-semibold text-sm">kbk.advocatedhrol@gmail.com | jbk1630@gmail.com</p>
               <p className="text-gray-300 text-sm mt-2">Response within 2-4 hours</p>
             </motion.a>
 

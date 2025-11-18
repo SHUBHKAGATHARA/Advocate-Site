@@ -39,7 +39,7 @@ export default function Navbar() {
       >
         <motion.a
           href="tel:+919638312551"
-          className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 rounded-full shadow-2xl text-black font-bold"
+          className="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-white to-gray-100 rounded-full shadow-2xl text-black font-bold"
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 3, repeat: Infinity }}
         >
@@ -67,17 +67,17 @@ export default function Navbar() {
               whileTap={{ scale: 0.95 }}
             >
               <motion.div 
-                className="w-12 h-12 bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 rounded-full flex items-center justify-center shadow-xl"
+                className="w-12 h-12 bg-gradient-to-r from-white to-gray-100 rounded-full flex items-center justify-center shadow-xl"
                 animate={{ rotate: [0, 360] }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               >
                 <Scale className="h-6 w-6 text-black" />
               </motion.div>
               <div>
-                <h1 className="text-xl font-black bg-gradient-to-r from-amber-300 via-amber-400 to-orange-500 bg-clip-text text-transparent" style={{ fontFamily: 'Montserrat' }}>
+                <h1 className="text-xl font-black text-white" style={{ fontFamily: 'Montserrat' }}>
                   Adv. Kishor Kagathara
                 </h1>
-                <p className="text-xs text-amber-400 font-semibold tracking-wider uppercase">
+                <p className="text-xs text-gray-300 font-semibold tracking-wider uppercase">
                   Legal Excellence
                 </p>
               </div>
@@ -94,12 +94,12 @@ export default function Navbar() {
                 >
                   <Link
                     href={item.href}
-                    className="relative group text-gray-200 hover:text-amber-400 transition-colors duration-300 font-bold text-lg"
+                    className="relative group text-gray-200 hover:text-white transition-colors duration-300 font-bold text-lg"
                     style={{ fontFamily: 'Montserrat' }}
                   >
                     {item.label}
                     <motion.span
-                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-orange-500 group-hover:w-full transition-all duration-300"
+                      className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-white to-gray-100 group-hover:w-full transition-all duration-300"
                       layout
                     />
                   </Link>
@@ -111,7 +111,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center space-x-6">
               <motion.a
                 href="tel:+919638312551"
-                className="flex items-center space-x-2 text-amber-400 hover:text-amber-300 transition-colors duration-300"
+                className="flex items-center space-x-2 text-white hover:text-gray-200 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
               >
                 <Phone className="h-4 w-4" />
@@ -123,7 +123,7 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-black"
+              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-white to-gray-100 text-black">
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </motion.button>
@@ -135,7 +135,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-amber-400/20"
+            className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20">
           >
             <div className="max-w-7xl mx-auto px-6 py-6">
               <div className="flex flex-col space-y-4">
@@ -144,7 +144,7 @@ export default function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-3 text-gray-300 hover:text-amber-400 transition-colors duration-300 text-lg font-semibold border-b border-gray-700 last:border-b-0"
+                    className="block py-3 text-gray-300 hover:text-white transition-colors duration-300 text-lg font-semibold border-b border-gray-700 last:border-b-0">
                   >
                     {item.label}
                   </Link>
@@ -155,14 +155,14 @@ export default function Navbar() {
                   <div className="space-y-4">
                     <a
                       href="tel:+919638312551"
-                      className="flex items-center space-x-3 text-amber-400 hover:text-amber-300 transition-colors duration-300"
+                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300">
                     >
                       <Phone className="h-5 w-5" />
                       <span className="font-semibold">+91 96383 12551</span>
                     </a>
                     <a
                       href="mailto:kbk.advocatedhrol@gmail.com"
-                      className="flex items-center space-x-3 text-amber-400 hover:text-amber-300 transition-colors duration-300"
+                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300">
                     >
                       <Mail className="h-5 w-5" />
                       <span className="font-semibold">kbk.advocatedhrol@gmail.com</span>

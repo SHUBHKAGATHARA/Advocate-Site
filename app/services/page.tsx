@@ -187,7 +187,7 @@ export default function ServicesPage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold text-lg overflow-hidden"
+                className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center">
                   Schedule Consultation
@@ -197,13 +197,13 @@ export default function ServicesPage() {
             </Link>
             
             <motion.a
-              href="tel:+919638312551"
+              href="tel:+919924263454"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 flex items-center"
             >
               <Phone className="mr-2 h-5 w-5" />
-              +91 96383 12551
+              +91 96383 12551 | +91 99242 63454
             </motion.a>
           </div>
         </motion.div>
@@ -266,7 +266,7 @@ export default function ServicesPage() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group/btn relative w-full px-6 py-3 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 border border-yellow-400/30 text-yellow-400 font-semibold hover:bg-gradient-to-r hover:from-yellow-400 hover:to-yellow-600 hover:text-black transition-all duration-300 overflow-hidden"
+                    className="group/btn relative w-full px-6 py-3 rounded-full bg-gradient-to-r from-white/20 to-gray-100/20 border border-white/30 text-white font-semibold hover:bg-gradient-to-r hover:from-white hover:to-gray-100 hover:text-black transition-all duration-300 overflow-hidden"
                   >
                     <span className="relative z-10 flex items-center justify-center">
                       Get Legal Help
@@ -320,7 +320,7 @@ export default function ServicesPage() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-semibold text-lg overflow-hidden"
+                  className="group relative px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold text-lg overflow-hidden hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
                 >
                   <span className="relative z-10 flex items-center">
                     Get Free Consultation
@@ -330,10 +330,10 @@ export default function ServicesPage() {
               </Link>
               
               <motion.a
-                href="mailto:kbk.advocatedhrol@gmail.com"
+                href="mailto:jbk1630@gmail.com"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400 hover:text-black transition-all duration-300 flex items-center"
+                className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center"
               >
                 <Mail className="mr-2 h-5 w-5" />
                 Email Me

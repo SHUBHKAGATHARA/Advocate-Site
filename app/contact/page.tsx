@@ -118,15 +118,15 @@ export default function ContactPage() {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      value: "+91 96383 12551",
-      href: "tel:+919638312551",
+      value: "+91 96383 12551 | +91 99242 63454",
+      href: "tel:+919924263454",
       description: "Available 24/7 for urgent legal matters"
     },
     {
       icon: <Mail className="h-6 w-6" />,
       title: "Email",
-      value: "kbk.advocatedhrol@gmail.com",
-      href: "mailto:kbk.advocatedhrol@gmail.com",
+      value: "jbk1630@gmail.com",
+      href: "mailto:jbk1630@gmail.com",
       description: "I typically respond within 2-4 hours"
     },
     {
@@ -361,10 +361,10 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                  className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
                     isSubmitting
                       ? 'bg-gray-600 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-yellow-400 to-yellow-600 text-black hover:shadow-lg hover:shadow-yellow-400/25'
+                      : 'bg-gradient-to-r from-white to-gray-100 text-black hover:shadow-2xl hover:shadow-white/30'
                   }`}
                 >
                   {isSubmitting ? (
@@ -419,12 +419,12 @@ export default function ContactPage() {
                 restraining orders, bail applications, and other time-sensitive legal emergencies.
               </p>
               <motion.a
-                href="tel:+919638312551"
+                href="tel:+919924263454"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="block text-center py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:shadow-lg hover:shadow-red-500/25 transition-all duration-300"
               >
-                🚨 Emergency Hotline: +91 96383 12551
+                🚨 Emergency Hotline: +91 96383 12551 | +91 99242 63454
               </motion.a>
             </div>
 
@@ -438,7 +438,7 @@ export default function ContactPage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-4 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black font-bold rounded-xl hover:shadow-lg hover:shadow-yellow-400/25 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="w-full py-4 bg-gradient-to-r from-white to-gray-100 text-black font-bold rounded-xl hover:shadow-2xl hover:shadow-white/30 transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <Calendar className="h-5 w-5" />
                 <span>Book Consultation</span>
