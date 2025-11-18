@@ -176,12 +176,12 @@ export default function AboutPage() {
         className="relative z-10 container-premium py-20"
       >
         {/* Page Header */}
-        <motion.div variants={itemVariants} className="text-center mb-20">
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8 glass-card"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 glass-card"
           >
             <span className="text-white text-sm font-semibold tracking-wider uppercase">
               Meet Our Legal Team
@@ -189,8 +189,8 @@ export default function AboutPage() {
           </motion.div>
           
           <motion.h1 
-            className="text-responsive-hero font-black mb-8 text-white leading-[0.9] tracking-tight"
-            initial={{ y: 50, opacity: 0 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 text-white leading-tight"
+            initial={{ y: 30, opacity: 0 }}
             animate={inView ? { y: 0, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >

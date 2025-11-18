@@ -179,27 +179,36 @@ export default function FAQPage() {
         className="relative z-10 max-w-6xl mx-auto px-6 py-20"
       >
         {/* Page Header */}
-        <motion.div variants={itemVariants} className="text-center mb-20">
+        <motion.div variants={itemVariants} className="text-center mb-16">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-6 glass-card"
           >
-            <HelpCircle className="mr-2 h-4 w-4 text-yellow-400" />
-            <span className="text-yellow-400 text-sm font-medium">
+            <HelpCircle className="mr-3 h-4 w-4 text-white" />
+            <span className="text-white text-sm font-semibold tracking-wider uppercase">
               Frequently Asked Questions
             </span>
           </motion.div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            <span className="text-white">Legal </span>
-            <span className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent">
-              FAQ
-            </span>
-          </h1>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          
+          <motion.h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 text-white leading-tight"
+            initial={{ y: 30, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Legal FAQ
+          </motion.h1>
+          
+          <motion.p 
+            className="text-lg md:text-xl text-white/70 max-w-4xl mx-auto leading-relaxed"
+            initial={{ y: 20, opacity: 0 }}
+            animate={inView ? { y: 0, opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
             Find answers to common questions about legal services, processes, and working with Adv. Kishor Kagathara
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Category Filter */}

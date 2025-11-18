@@ -123,7 +123,7 @@ export default function Navbar() {
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-white to-gray-100 text-black">
+              className="lg:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-white to-gray-100 text-black"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </motion.button>
@@ -135,7 +135,7 @@ export default function Navbar() {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20">
+            className="lg:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-white/20"
           >
             <div className="max-w-7xl mx-auto px-6 py-6">
               <div className="flex flex-col space-y-4">
@@ -144,7 +144,7 @@ export default function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className="block py-3 text-gray-300 hover:text-white transition-colors duration-300 text-lg font-semibold border-b border-gray-700 last:border-b-0">
+                    className="block py-3 text-gray-300 hover:text-white transition-colors duration-300 text-lg font-semibold border-b border-gray-700 last:border-b-0"
                   >
                     {item.label}
                   </Link>
@@ -155,14 +155,14 @@ export default function Navbar() {
                   <div className="space-y-4">
                     <a
                       href="tel:+919638312551"
-                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300">
+                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300"
                     >
                       <Phone className="h-5 w-5" />
                       <span className="font-semibold">+91 96383 12551</span>
                     </a>
                     <a
                       href="mailto:kbk.advocatedhrol@gmail.com"
-                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300">
+                      className="flex items-center space-x-3 text-white hover:text-gray-200 transition-colors duration-300"
                     >
                       <Mail className="h-5 w-5" />
                       <span className="font-semibold">kbk.advocatedhrol@gmail.com</span>
