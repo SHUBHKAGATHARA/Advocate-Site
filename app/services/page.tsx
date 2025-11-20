@@ -219,14 +219,14 @@ export default function ServicesPage() {
             From criminal defense to corporate law, I offer personalized attention and proven results for every client.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="btn-container-mobile">
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.2)" }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-premium-white group relative px-8 py-4 rounded-full overflow-hidden"
+                className="btn-premium-white btn-mobile-safe group relative overflow-hidden w-full sm:w-auto"
               >
-                <span className="relative z-10 flex items-center text-lg font-bold">
+                <span className="relative z-10 flex items-center justify-center text-lg font-bold">
                   Schedule Consultation
                   <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </span>
@@ -237,10 +237,11 @@ export default function ServicesPage() {
               href="tel:+919924263454"
               whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.8)" }}
               whileTap={{ scale: 0.95 }}
-              className="btn-premium-outline group px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center backdrop-blur-sm"
+              className="btn-premium-outline btn-mobile-safe group w-full sm:w-auto"
             >
               <Phone className="mr-3 h-5 w-5" />
-              +91 96383 12551 | +91 99242 63454
+              <span className="hidden sm:inline">+91 96383 12551 | +91 99242 63454</span>
+              <span className="sm:hidden">Call Now</span>
             </motion.a>
           </div>
         </motion.div>
@@ -356,14 +357,14 @@ export default function ServicesPage() {
               </div>
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="btn-container-mobile">
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-premium-white group relative px-8 py-4 rounded-full overflow-hidden"
+                  className="btn-premium-white btn-mobile-safe group relative overflow-hidden w-full sm:w-auto"
                 >
-                  <span className="relative z-10 flex items-center text-lg font-bold">
+                  <span className="relative z-10 flex items-center justify-center text-lg font-bold">
                     Get Free Consultation
                     <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
                   </span>
@@ -374,10 +375,11 @@ export default function ServicesPage() {
                 href="mailto:jbk1630@gmail.com"
                 whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.8)" }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-premium-outline group px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center backdrop-blur-sm"
+                className="btn-premium-outline btn-mobile-safe group w-full sm:w-auto"
               >
                 <Mail className="mr-3 h-5 w-5" />
-                Email Me
+                <span className="hidden sm:inline">Email Me</span>
+                <span className="sm:hidden">Send Email</span>
               </motion.a>
             </div>
           </motion.div>

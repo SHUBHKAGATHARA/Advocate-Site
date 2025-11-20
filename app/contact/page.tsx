@@ -385,20 +385,20 @@ export default function ContactPage() {
                   disabled={isSubmitting}
                   whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                  className={`w-full py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
+                  className={`btn-premium-white btn-mobile-safe w-full min-h-[56px] ${
                     isSubmitting
-                      ? 'bg-gray-600 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-white to-gray-100 text-black hover:shadow-2xl hover:shadow-white/30'
+                      ? 'opacity-70 cursor-not-allowed bg-gray-400'
+                      : ''
                   }`}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-600 mr-2" />
                       <span>Sending...</span>
                     </>
                   ) : (
                     <>
-                      <Send className="h-5 w-5" />
+                      <Send className="h-5 w-5 mr-2" />
                       <span>Send Message</span>
                     </>
                   )}
@@ -462,9 +462,9 @@ export default function ContactPage() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-4 bg-gradient-to-r from-white to-gray-100 text-black font-bold rounded-xl hover:shadow-2xl hover:shadow-white/30 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="btn-premium-white btn-mobile-safe w-full"
               >
-                <Calendar className="h-5 w-5" />
+                <Calendar className="h-5 w-5 mr-2" />
                 <span>Book Consultation</span>
               </motion.button>
             </div>

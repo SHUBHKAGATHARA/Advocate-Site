@@ -757,14 +757,14 @@ export default function AboutPage() {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="btn-container-mobile">
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(255,255,255,0.2)" }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-premium-white group relative px-8 py-4 rounded-full overflow-hidden"
+                  className="btn-premium-white btn-mobile-safe group relative overflow-hidden w-full sm:w-auto"
                 >
-                  <span className="relative z-10 flex items-center text-lg font-bold">
+                  <span className="relative z-10 flex items-center justify-center text-lg font-bold">
                     Get Free Consultation
                     <Calendar className="ml-3 h-5 w-5" />
                   </span>
@@ -775,10 +775,11 @@ export default function AboutPage() {
                 href="tel:+919638312551"
                 whileHover={{ scale: 1.05, borderColor: "rgba(255,255,255,0.8)" }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-premium-outline group px-8 py-4 rounded-full border-2 border-white/40 text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center backdrop-blur-sm"
+                className="btn-premium-outline btn-mobile-safe group w-full sm:w-auto"
               >
                 <Phone className="mr-3 h-5 w-5" />
-                Call for Emergency
+                <span className="hidden sm:inline">Call for Emergency</span>
+                <span className="sm:hidden">Emergency Call</span>
               </motion.a>
             </div>
 

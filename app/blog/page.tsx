@@ -347,15 +347,17 @@ export default function BlogPage() {
               These articles provide general information. For specific legal advice tailored to your situation, 
               schedule a consultation with Adv. Kishor Kagathara.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <div className="btn-container-mobile">
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 rounded-full bg-gradient-to-r from-white to-gray-100 text-black font-bold text-lg flex items-center hover:shadow-2xl hover:shadow-white/30 transition-all duration-300"
+                  className="btn-premium-white btn-mobile-safe w-full sm:w-auto"
                 >
-                  Schedule Consultation
-                  <Calendar className="ml-2 h-5 w-5" />
+                  <span className="flex items-center justify-center">
+                    Schedule Consultation
+                    <Calendar className="ml-2 h-5 w-5" />
+                  </span>
                 </motion.button>
               </Link>
               
@@ -363,7 +365,7 @@ export default function BlogPage() {
                 href="tel:+919924263454"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-full border-2 border-white text-white font-bold text-lg hover:bg-white hover:text-black transition-all duration-300 flex items-center"
+                className="btn-premium-outline btn-mobile-safe w-full sm:w-auto"
               >
                 <Phone className="mr-2 h-5 w-5" />
                 Call for Urgent Matters

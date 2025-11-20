@@ -229,13 +229,13 @@ export default function Home() {
             {/* CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in-up delay-500"
+              className="btn-container-mobile animate-fade-in-up delay-500"
             >
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-premium-white group relative overflow-hidden"
+                  className="btn-premium-white btn-mobile-safe group relative overflow-hidden w-full sm:w-auto"
                 >
                   <Calendar className="mr-3 w-5 h-5" />
                   <span>Book Consultation</span>
@@ -247,7 +247,7 @@ export default function Home() {
                 href="tel:+919638312551"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-premium-outline group"
+                className="btn-premium-outline btn-mobile-safe group w-full sm:w-auto"
               >
                 <Phone className="mr-3 w-5 h-5" />
                 <span>Call Now</span>
@@ -373,9 +373,9 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn-premium-outline w-full"
+                    className="btn-premium-outline btn-mobile-safe w-full"
                   >
-                    Learn More
+                    <span>Learn More</span>
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </motion.button>
                 </Link>
@@ -531,13 +531,13 @@ export default function Home() {
             
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-in-up delay-400"
+              className="btn-container-mobile animate-fade-in-up delay-400"
             >
               <Link href="/contact">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="btn-premium-white"
+                  className="btn-premium-white btn-mobile-safe w-full sm:w-auto"
                 >
                   <Calendar className="mr-3 w-5 h-5" />
                   Schedule Consultation
@@ -548,10 +548,11 @@ export default function Home() {
                 href="tel:+919638312551"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-premium-outline"
+                className="btn-premium-outline btn-mobile-safe w-full sm:w-auto"
               >
                 <Phone className="mr-3 w-5 h-5" />
-                Call Now: +91 96383 12551
+                <span className="hidden sm:inline">Call Now: +91 96383 12551</span>
+                <span className="sm:hidden">Call Now</span>
               </motion.a>
             </motion.div>
           </motion.div>
